@@ -71,12 +71,11 @@ On a 3 trucs à faire :
 ```
 
 ```bash
-[crea@meowVM ~]$ sudo rm -rf /var/log/* 
+[crea@meowVM ~]$ sudo journalctl --rotate`
+[crea@meowVM ~]$ sudo journalctl --vacuum-time=1s
 [crea@meowVM ~]$ cat /dev/null > ~/.bash_history
 [crea@meowVM ~]$ history -c
 ```
-
-(version gros bourrin, on pourrait faire `sudo journalctl --rotate` & `sudo journalctl --vacuum-time=1s` pour etre plus clean au niveau du journal systemd mais la on delete tout d’un coup (meme les logs root)
 
 ```bash
 [crea@meowVM ~]$ sudo dnf clean all
@@ -822,7 +821,8 @@ WantedBy=multi-user.target
 [crea@petitmiaoudeviendragrandmiaou ~]$ sudo cloud-init clean --logs
 [crea@petitmiaoudeviendragrandmiaou ~]$ sudo rm -rf /var/lib/cloud/*
 [crea@petitmiaoudeviendragrandmiaou ~]$ sudo systemctl enable cloud-init
-[crea@petitmiaoudeviendragrandmiaou ~]$ sudo rm -rf /var/log/*
+[crea@meowVM ~]$ sudo journalctl --rotate`
+[crea@meowVM ~]$ sudo journalctl --vacuum-time=1s
 [crea@petitmiaoudeviendragrandmiaou ~]$ cat /dev/null > ~/.bash_history
 [crea@petitmiaoudeviendragrandmiaou ~]$ history -c
 [crea@petitmiaoudeviendragrandmiaou ~]$ sudo rm -rf /var/lib/waagent/*
