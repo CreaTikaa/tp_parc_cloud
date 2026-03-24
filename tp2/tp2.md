@@ -17,11 +17,11 @@ Your public key has been saved in cloud_tp1.pub
 **Configurer un agent SSH sur votre poste**
 Add clés à l'agent
 ```
-~ maison                                                                                      09:13:30
+~ maison
 ❯ eval "$(ssh-agent -s)"
 Agent pid 8255
 
-~ maison                                                                                      09:13:42
+~ maison
 ❯ ssh-add .ssh/cloud_tp1
 Identity added: .ssh/cloud_tp1 (crea@hope)
 ```
