@@ -15,15 +15,24 @@ Your public key has been saved in cloud_tp1.pub
 ```
 
 **Configurer un agent SSH sur votre poste**
+Add clés à l'agent
+```
+~ maison                                                                                      09:13:30
+❯ eval "$(ssh-agent -s)"
+Agent pid 8255
 
-~/.ssh/config
+~ maison                                                                                      09:13:42
+❯ ssh-add .ssh/cloud_tp1
+Identity added: .ssh/cloud_tp1 (crea@hope)
+```
+
+~/.ssh/config pour la simplicité : 
 
 ```powershell
 Host a1
-    Hostname 0.0.0.0
+    Hostname <ip_VM>
     User crea
     IdentityFile ~/.ssh/cloud_tp1
-    ForwardAgent yes
 ```
 
 ## **II. Spawn des VMs**
