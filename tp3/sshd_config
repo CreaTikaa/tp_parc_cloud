@@ -1,0 +1,51 @@
+#	$OpenBSD: sshd_config,v 1.104 2021/07/02 05:11:21 dtucker Exp $
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port 22
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers recommandés par l'ANSSI + pas de banner pr pas donner des infos pr rien
+Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+Banner none
+
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+
+# strict mode + pas permit root login & gracetime permet d'éviter des DoS
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 3
+LoginGraceTime 20
+
+# pubkey auth
+PubkeyAuthentication yes
+AuthorizedKeysFile	.ssh/authorized_keys
+
+# pas besoin de tout ça ici donc on disable
+ChallengeResponseAuthentication no
+KerberosAuthentication no
+GSSAPIAuthentication no
+X11Forwarding no
+AllowTcpForwarding no
+# pas besoin de gui pr un serveur a priori + disable forwarding tant que c'est pas use
+
+# pas autorisé password, only pubkey & on change pas les variable d'env !!
+PasswordAuthentication no
+PermitEmptyPasswords no
+PermitRootLogin no
+PermitUserEnvironment no
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+
+# ssh propose aussi un serveur sftp pour download/upload des files, ne requiert pas d'accès shell donc on chroot tout les users qui utilisent que sftp
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+Match group sftp-users
+ForceCommand internal-sftp
+ChrootDirectory /sftp-home/\%u

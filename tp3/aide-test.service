@@ -1,0 +1,10 @@
+[Unit]
+Description=Run an AIDE integrity check
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/aide --check
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
