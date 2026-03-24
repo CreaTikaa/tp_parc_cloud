@@ -809,7 +809,8 @@ WantedBy=multi-user.target
 
 ```
 
-![image.png](attachment:2d969d3f-021b-4d58-a845-aa87fc65037c:image.png)
+<img width="658" height="402" alt="Screenshot_09h:04_26" src="https://github.com/user-attachments/assets/95dc718c-e00d-4d26-929d-cc79d2df82a6" />
+
 
 ## **V. Deploy**
 
